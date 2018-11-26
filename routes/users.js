@@ -5,7 +5,7 @@ const router = express.Router();
 router.use(express.json());
 
 router.post('/', (req, res, next) => {
-  const { username, password, firstName, lastName, email } = req.body;
+  const { username, password, firstName, lastName } = req.body;
   const requiredFields = ['username', 'password'];
 
   const missingField = requiredFields.find(field => ! (field in req.body));
@@ -64,7 +64,6 @@ router.post('/', (req, res, next) => {
       return User.create({
         username,
         password: digest,
-        email,
         firstName, 
         lastName
       });
