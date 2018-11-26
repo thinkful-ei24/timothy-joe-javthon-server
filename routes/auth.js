@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const { JWT_SECRET, JWT_EXPIRY } = require('../config');
 const router = express.Router();
 const localAuth = require('../strategies/local');
-const jwtAuth = require('../strategies/jwtAuth');
+const jwtAuth = require('../strategies/jwt');
 
 router.use(express.json());
 

@@ -10,6 +10,7 @@ const { dbConnect } = require('./db-mongoose');
 const app = express();
 
 const usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth');
 
 
 
@@ -26,6 +27,26 @@ app.use(
 );
 
 app.use('/api/users', usersRouter);
+app.use('/auth', authRouter);
+
+app.use((req, res, next) => {
+  const err = new Error('Not found');
+  err.status = 404;
+  next(err);
+});
+
+app.use((err, req, res, next) => {
+  if (err.status) {
+    const errBody = { 
+      ...err,
+      message: err.message 
+    };
+    return res.status(err.status).json(errBody);
+  } else {
+    console.error(err);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
 
 function runServer(port = PORT) {
   const server = app

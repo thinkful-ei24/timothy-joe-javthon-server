@@ -1,33 +1,32 @@
-const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = require('../config');
+const User = require('../models/user');
 
-function jwtAuth(req, res, next){
-  const auth = req.header('Authorization');
-  
-  if(!auth){
-    const err = new Error('Authorization header is missing');
-    err.status = 401;
+module.exports = function localAuth(req, res, next){
+  const { username, password } = req.body;
+  if(!username || !password){
+    const err = new Error('Missing username or password');
+    err.status = 422;
     return next(err);
   }
 
-  const [ scheme, token] = auth.split(' ');
-
-  if(scheme !== 'Bearer' ||!token){
-    const err = new Error('Token is missing');
-    err.status = 401;
-    return next(err);
-  }
-
-  jwt.verify(token, JWT_SECRET,(err, payload) => {
-    if(err){
-      const err = new Error('Invalid JWT');
-      err.status = 401;
-      return next(err);
-    }
-    
-    req.user = payload.user;
-    return next();
-  });
-}
-
-module.exports = jwtAuth;
+  let user;
+  User.findOne({ username })
+    .then(_user => {
+      user = _user;
+      if(!user){
+        const err = new Error('Username does not exist');
+        err.status = 401;
+        return Promise.reject(err);
+      }
+      return user.validatePassword(password);
+    })
+    .then(isValid => {
+      if(!isValid){
+        const err = new Error('Password is invalid');
+        err.status = 401;
+        return Promise.reject(err);
+      }
+      req.user = user;
+      return next();
+    })
+    .catch(next);
+};
