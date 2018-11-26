@@ -6,9 +6,12 @@ const morgan = require('morgan');
 
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
-// const {dbConnect} = require('./db-knex');
 
 const app = express();
+
+const usersRouter = require('./routes/users');
+
+
 
 app.use(
   morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
@@ -21,6 +24,8 @@ app.use(
     origin: CLIENT_ORIGIN
   })
 );
+
+app.use('/api/users', usersRouter);
 
 function runServer(port = PORT) {
   const server = app
