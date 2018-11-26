@@ -5,7 +5,7 @@ const router = express.Router();
 router.use(express.json());
 
 router.post('/', (req, res, next) => {
-  const { username, password, name, email } = req.body;
+  const { username, password, firstName, lastName, email } = req.body;
   const requiredFields = ['username', 'password'];
 
   const missingField = requiredFields.find(field => ! (field in req.body));
@@ -65,7 +65,8 @@ router.post('/', (req, res, next) => {
         username,
         password: digest,
         email,
-        name
+        firstName, 
+        lastName
       });
     })
     .then(user => {
