@@ -22,11 +22,47 @@ router.get('/', (req, res, next) => {
 
 router.put('/', express.json(), (req, res, next) => {
   const id = req.user.id;
-  
   const { numberOfSuccesses, numberOfAttempts, memoryStrength } = req.body;
 
+  return User.findOne({ _id: id })
+    .then(user => {
+      if(!user) return Promise.reject();
+      let { head, questions } = user;
+
+      // update success, attempts and memory strength properties on head node
+
+      questions[head].numberOfAttempts = numberOfAttempts;
+      questions[head].numberOfSuccesses = numberOfSuccesses;
+      questions[head].memoryStrength = memoryStrength;
+
+      // change head to next node
+
+      const oldHead = head;
+      user.head = questions[head].next;
+
+      // traverse to the m-1st node in the linked list
+      let temp = questions[user.head];
+
+      let i = 1;
+      while(temp.next !== null && i < memoryStrength){
+        temp = questions[temp.next];
+        i++;
+      }
+
+      // set the next property on the m-1st node to old head
+      // set next property on head to m-1st node's next
+      questions[oldHead].next = temp.next;
+      temp.next = oldHead;
+      
+      return user.save();
+    })
+    .then(user => {
+      return res.status(201).json(user);
+    })
+    .catch(next);
 
 });
+
 
 
 // router.put('/:id', express.json(),(req, res, next) => {

@@ -22,8 +22,7 @@ const questionSchema = mongoose.Schema({
     default: 0
   },
   next: {
-    type: Number,
-    required: true
+    type: Number
   }
 });
 

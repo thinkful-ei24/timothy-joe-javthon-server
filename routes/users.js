@@ -72,7 +72,7 @@ router.post('/', (req, res, next) => {
       });
     })
     .then(user => {
-      return res.status(201).json(user);
+      return res.status(201).json(user.serialize());
     })
     .catch(next);
 });

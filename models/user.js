@@ -33,6 +33,15 @@ userSchema.methods.validatePassword = function(password){
   return bcrypt.compare(password, this.password);
 };
 
+userSchema.methods.serialize= function(){
+  return {
+    id: this.id,
+    username: this.username,
+    firstName: this.firstName,
+    lastName: this.lastName
+  };
+};
+
 userSchema.set('toObject', {
   virtuals: true,
   versionKey: false,
@@ -40,7 +49,6 @@ userSchema.set('toObject', {
     delete result._id;
     delete result._v;
     delete result.password;
-    delete result.questions;
   }
 });
 
