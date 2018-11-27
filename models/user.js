@@ -18,7 +18,11 @@ const userSchema = mongoose.Schema({
   lastName: {
     type: String
   },
-  questions: [questionSchema]
+  questions: [questionSchema],
+  head: {
+    type: Number,
+    default: 0
+  }
 });
 
 userSchema.statics.hashPassword = function(password){

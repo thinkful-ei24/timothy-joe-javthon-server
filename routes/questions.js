@@ -7,6 +7,7 @@ router.use(jwt);
 
 router.get('/', (req, res, next) => {
   const id = req.user.id;
+  
   return User.findOne({ _id: id })
     .then(user => {
       if(!user){

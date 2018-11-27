@@ -25,10 +25,10 @@ module.exports = [
   },
   {
     question: 'In hac habitasse platea dictumst. Maecenas lobortis, dui non fermentum porttitor, quam sem faucibus felis, nec aliquam massa libero eu massa.',
-    answer: ' Mauris'
+    answer: 'Mauris'
   },
   {
-    question: ' Morbi consequat venenatis mattis.',
-    answer: ' enim'
+    question: 'Morbi consequat venenatis mattis.',
+    answer: 'enim'
   },
 ];
