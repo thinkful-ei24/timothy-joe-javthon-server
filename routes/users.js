@@ -1,6 +1,8 @@
 const express = require('express');
 const User = require('../models/user');
 
+const questions = require('../seed/questions');
+
 const router = express.Router();
 router.use(express.json());
 
@@ -65,7 +67,8 @@ router.post('/', (req, res, next) => {
         username,
         password: digest,
         firstName, 
-        lastName
+        lastName,
+        questions
       });
     })
     .then(user => {

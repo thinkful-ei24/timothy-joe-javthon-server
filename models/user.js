@@ -36,6 +36,7 @@ userSchema.set('toObject', {
     delete result._id;
     delete result._v;
     delete result.password;
+    delete result.questions;
   }
 });
 

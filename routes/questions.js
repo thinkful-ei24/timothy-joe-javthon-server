@@ -9,6 +9,9 @@ router.get('/', (req, res, next) => {
   const id = req.user.id;
   return User.findOne({ _id: id })
     .then(user => {
+      if(!user){
+        return Promise.reject();
+      }
       const questions = user.questions;
       const question = questions.length ? questions[0] : null;
       return res.json(question);
@@ -32,6 +35,7 @@ router.put('/:id', express.json(),(req, res, next) => {
     { new: true }
   )
     .then(user => {
+      if(!user) return Promise.reject();
       return res.json(user.questions);
     })
     .catch(next);
@@ -60,6 +64,7 @@ router.post('/', express.json(), (req, res, next) => {
     { new: true }
   )
     .then(user => {
+      if(!user) return Promise.reject();
       return res.status(201).json(user.questions);
     })
     .catch(next);
