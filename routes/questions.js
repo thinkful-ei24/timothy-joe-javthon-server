@@ -21,6 +21,7 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
+
 router.put('/', express.json(), (req, res, next) => {
   const id = req.user.id;
   const { numberOfSuccesses, numberOfAttempts, memoryStrength } = req.body;
@@ -34,17 +35,17 @@ router.put('/', express.json(), (req, res, next) => {
   return User.findOne({ _id: id })
     .then(user => {
       if(!user) return Promise.reject();
-      let { head, questions } = user;
+
+      let { head: answered, questions } = user;
 
       // update success, attempts and memory strength properties on answered question
 
-      questions[head].numberOfAttempts = numberOfAttempts;
-      questions[head].numberOfSuccesses = numberOfSuccesses;
-      questions[head].memoryStrength = memoryStrength;
+      questions[answered].numberOfAttempts = numberOfAttempts;
+      questions[answered].numberOfSuccesses = numberOfSuccesses;
+      questions[answered].memoryStrength = memoryStrength;
 
-      // change head to next question
-      const answered = head;
-      user.head = questions[head].next;
+      // set head to the next question
+      user.head = questions[answered].next;
 
       // traverse to the mth question in the linked list
       let temp = questions[user.head];
