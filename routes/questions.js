@@ -36,7 +36,8 @@ router.put('/:id', express.json(),(req, res, next) => {
   )
     .then(user => {
       if(!user) return Promise.reject();
-      return res.json(user.questions);
+      const question = user.questions.filter(question => question.id === questionId);
+      return res.json(question);
     })
     .catch(next);
 });
