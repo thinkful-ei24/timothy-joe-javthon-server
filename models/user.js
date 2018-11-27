@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const questionSchema = require('./question');
 
 const userSchema = mongoose.Schema({
   username: {
@@ -16,7 +17,8 @@ const userSchema = mongoose.Schema({
   },
   lastName: {
     type: String
-  }
+  },
+  questions: [questionSchema]
 });
 
 userSchema.statics.hashPassword = function(password){

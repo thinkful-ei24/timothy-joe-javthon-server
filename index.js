@@ -11,6 +11,7 @@ const app = express();
 
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
+const questionsRouter = require('./routes/questions');
 
 
 
@@ -28,6 +29,7 @@ app.use(
 
 app.use('/api/users', usersRouter);
 app.use('/auth', authRouter);
+app.use('/api/questions', questionsRouter);
 
 app.use((req, res, next) => {
   const err = new Error('Not found');
