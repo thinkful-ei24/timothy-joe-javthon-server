@@ -13,8 +13,9 @@ router.get('/', (req, res, next) => {
       if(!user){
         return Promise.reject();
       }
-      const headIndex = user.head;
-      const question = user.questions[headIndex];
+
+      const head = user.head;
+      const question = user.questions[head];
       return res.json(question);
     })
     .catch(next);
@@ -62,31 +63,6 @@ router.put('/', express.json(), (req, res, next) => {
     .catch(next);
 
 });
-
-
-
-// router.put('/:id', express.json(),(req, res, next) => {
-//   const id = req.user.id;
-//   const questionId = req.params.id;
-//   const { numberOfSuccesses, numberOfAttempts } = req.body;
-  
-//   return User.findOneAndUpdate(
-//     { _id: id, 'questions._id': questionId },
-//     { $set: 
-//       { 
-//         'questions.$.numberOfSuccesses': numberOfSuccesses, 
-//         'questions.$.numberOfAttempts': numberOfAttempts 
-//       }
-//     },
-//     { new: true }
-//   )
-//     .then(user => {
-//       if(!user) return Promise.reject();
-//       const question = user.questions.filter(question => question.id === questionId);
-//       return res.json(question);
-//     })
-//     .catch(next);
-// });
 
 router.post('/', express.json(), (req, res, next) => {
   const id = req.user.id;
