@@ -56,7 +56,7 @@ router.post('/', (req, res, next) => {
       if(user){
         const err = new Error('Username already exists');
         err.status = 422;
-        return next(err);
+        return Promise.reject(err);
       }
       return User.hashPassword(password);
     })
