@@ -25,12 +25,18 @@ router.put('/', express.json(), (req, res, next) => {
   const id = req.user.id;
   const { numberOfSuccesses, numberOfAttempts, memoryStrength } = req.body;
 
+  if(memoryStrength <= 0) {
+    const err = new Error('Memory strength cannot be less than 1');
+    err.status = 422;
+    return next(err);
+  }
+
   return User.findOne({ _id: id })
     .then(user => {
       if(!user) return Promise.reject();
       let { head, questions } = user;
 
-      // update success, attempts and memory strength properties on head node
+      // update success, attempts and memory strength properties on answered question
 
       questions[head].numberOfAttempts = numberOfAttempts;
       questions[head].numberOfSuccesses = numberOfSuccesses;
