@@ -7,41 +7,50 @@ router.use(jwt);
 
 router.get('/', (req, res, next) => {
   const id = req.user.id;
-  
+
   return User.findOne({ _id: id })
     .then(user => {
       if(!user){
         return Promise.reject();
       }
-      const questions = user.questions;
-      const question = questions.length ? questions[0] : null;
+      const headIndex = user.head;
+      const question = user.questions[headIndex];
       return res.json(question);
     })
     .catch(next);
 });
 
-router.put('/:id', express.json(),(req, res, next) => {
+router.put('/', express.json(), (req, res, next) => {
   const id = req.user.id;
-  const questionId = req.params.id;
-  const { numberOfSuccesses, numberOfAttempts } = req.body;
   
-  return User.findOneAndUpdate(
-    { _id: id, 'questions._id': questionId },
-    { $set: 
-      { 
-        'questions.$.numberOfSuccesses': numberOfSuccesses, 
-        'questions.$.numberOfAttempts': numberOfAttempts 
-      }
-    },
-    { new: true }
-  )
-    .then(user => {
-      if(!user) return Promise.reject();
-      const question = user.questions.filter(question => question.id === questionId);
-      return res.json(question);
-    })
-    .catch(next);
+  const { numberOfSuccesses, numberOfAttempts, memoryStrength } = req.body;
+
+
 });
+
+
+// router.put('/:id', express.json(),(req, res, next) => {
+//   const id = req.user.id;
+//   const questionId = req.params.id;
+//   const { numberOfSuccesses, numberOfAttempts } = req.body;
+  
+//   return User.findOneAndUpdate(
+//     { _id: id, 'questions._id': questionId },
+//     { $set: 
+//       { 
+//         'questions.$.numberOfSuccesses': numberOfSuccesses, 
+//         'questions.$.numberOfAttempts': numberOfAttempts 
+//       }
+//     },
+//     { new: true }
+//   )
+//     .then(user => {
+//       if(!user) return Promise.reject();
+//       const question = user.questions.filter(question => question.id === questionId);
+//       return res.json(question);
+//     })
+//     .catch(next);
+// });
 
 router.post('/', express.json(), (req, res, next) => {
   const id = req.user.id;

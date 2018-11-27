@@ -9,6 +9,10 @@ const questionSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  memoryStrength: {
+    type: Number,
+    default: 1
+  },
   numberOfSuccesses: {
     type: Number,
     default: 0
@@ -16,6 +20,10 @@ const questionSchema = mongoose.Schema({
   numberOfAttempts: {
     type: Number,
     default: 0
+  },
+  next: {
+    type: Number,
+    required: true
   }
 });
 
