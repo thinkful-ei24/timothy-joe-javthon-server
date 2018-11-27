@@ -33,7 +33,7 @@ userSchema.methods.validatePassword = function(password){
   return bcrypt.compare(password, this.password);
 };
 
-userSchema.methods.serialize= function(){
+userSchema.methods.serialize = function(){
   return {
     id: this.id,
     username: this.username,

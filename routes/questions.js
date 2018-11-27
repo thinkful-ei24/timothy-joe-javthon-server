@@ -36,24 +36,21 @@ router.put('/', express.json(), (req, res, next) => {
       questions[head].numberOfSuccesses = numberOfSuccesses;
       questions[head].memoryStrength = memoryStrength;
 
-      // change head to next node
-
-      const oldHead = head;
+      // change head to next question
+      const answered = head;
       user.head = questions[head].next;
 
-      // traverse to the m-1st node in the linked list
+      // traverse to the mth question in the linked list
       let temp = questions[user.head];
-
       let i = 1;
       while(temp.next !== null && i < memoryStrength){
         temp = questions[temp.next];
         i++;
       }
 
-      // set the next property on the m-1st node to old head
-      // set next property on head to m-1st node's next
-      questions[oldHead].next = temp.next;
-      temp.next = oldHead;
+      // insert answered question after the mth question
+      questions[answered].next = temp.next;
+      temp.next = answered;
       
       return user.save();
     })
