@@ -32,6 +32,21 @@ router.put('/', express.json(), (req, res, next) => {
     return next(err);
   }
 
+  const atleastZero = ['numberOfSuccesses', 'numberOfAttempts'];
+  const tooLow = atleastZero.find(field => req.body[field] < 0);
+
+  if(tooLow){
+    const err = new Error(`${tooLow} cannot be less than zero`);
+    err.status = 422;
+    return next(err);
+  }
+
+  if(numberOfAttempts < numberOfSuccesses){
+    const err = new Error('numberOfAttempts cannot be less than numberOfSuccesses');
+    err.status = 422;
+    return next(err);
+  }
+
   return User.findOne({ _id: id })
     .then(user => {
       if(!user) return Promise.reject();
