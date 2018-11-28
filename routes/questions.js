@@ -24,6 +24,15 @@ router.get('/', (req, res, next) => {
 
 router.put('/', express.json(), (req, res, next) => {
   const id = req.user.id;
+
+  const requiredFields = ['numberOfSuccesses', 'numberOfAttempts', 'memoryStrength'];
+  const missingField = requiredFields.find(field => !(field in req.body));
+  if(missingField){
+    const err = new Error(`${missingField} is missing`);
+    err.status = 422;
+    return next(err);
+  }
+
   const { numberOfSuccesses, numberOfAttempts, memoryStrength } = req.body;
 
   if(memoryStrength <= 0) {
