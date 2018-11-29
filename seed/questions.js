@@ -1,42 +1,147 @@
 module.exports = [
   {
-    question: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    answer: 'Curabitur',
+    question: `KABUL`,
+    answer: 'AFGHANISTAN',
     next: 1
   },
   {
-    question: 'Nulla scelerisque gravida finibus. Donec ultrices nisl ut sapien tempus, at iaculis nisi pretium.',
-    answer: 'Phasellus',
+    question: 'BRUSSELS',
+    answer: 'BELGIUM',
     next: 2
   },
   {
-    question: 'Nunc laoreet dignissim mi a ornare. Donec quam mauris, suscipit nec felis blandit, vestibulum vestibulum turpis.',
-    answer: 'urna',
+    question: 'SUCRE',
+    answer: 'BOLIVIA',
     next: 3
   },
   {
-    question: 'In tempor diam sit amet metus molestie lobortis.',
-    answer: 'Maecenas',
+    question: 'OTTAWA',
+    answer: 'CANADA',
     next: 4
   },
   {
-    question: 'Aliquam feugiat euismod vulputate. Sed augue diam, viverra vel ipsum vel, malesuada mattis diam.',
-    answer: 'Ut ut bibendum arcu.',
+    question: 'SANTIAGO',
+    answer: 'CHILE',
     next: 5
   },
   {
-    question: 'Nulla sed metus nibh. In sit amet erat tristique, sagittis nibh id, tristique risus. Integer in aliquam est, eget rutrum purus.',
-    answer: 'Quisque',
+    question: 'QUITO',
+    answer: 'ECUADOR',
     next: 6
   },
   {
-    question: 'In hac habitasse platea dictumst. Maecenas lobortis, dui non fermentum porttitor, quam sem faucibus felis, nec aliquam massa libero eu massa.',
-    answer: 'Mauris',
+    question: 'CAIRO',
+    answer: 'EGYPT',
     next: 7
   },
   {
-    question: 'Morbi consequat venenatis mattis.',
-    answer: 'enim',
+    question: 'SUVA',
+    answer: 'FIJI',
+    next: 8
+  },
+  {
+    question: 'HELSINKI',
+    answer: 'FINLAND',
+    next: 9
+  },
+  {
+    question: 'ATHENS',
+    answer: 'GREECE',
+    next: 10
+  },
+  {
+    question: 'GEORGETOWN',
+    answer: 'GUYANA',
+    next: 11
+  },
+  {
+    question: 'BAGHDAD',
+    answer: 'IRAQ',
+    next: 12
+  },
+  {
+    question: 'TOKYO',
+    answer: 'JAPAN',
+    next: 13
+  },
+  {
+    question: 'BEIRUT',
+    answer: 'LEBANON',
+    next: 14
+  },
+  {
+    question: 'VILNIUS',
+    answer: 'LITHUANIA',
+    next: 15
+  },
+  {
+    question: 'MONACO',
+    answer: 'MONACO',
+    next: 16
+  },
+  {
+    question: 'ISLAMABAD',
+    answer: 'PAKISTAN',
+    next: 17
+  },
+  {
+    question: 'MOSCOW',
+    answer: 'RUSSIA	',
+    next: 18
+  },
+  {
+    question: 'RIYADH',
+    answer: 'SAUDI ARABIA',
+    next: 19
+  },
+  {
+    question: 'VICTORIA',
+    answer: 'SEYCHELLES',
+    next: 20
+  },
+  {
+    question: '	LJUBLJANA',
+    answer: 'SLOVENIA',
+    next: 21
+  },
+  {
+    question: 'MADRID',
+    answer: 'SPAIN',
+    next: 23
+  },
+  {
+    question: 'DUSHANBE',
+    answer: 'TAJIKISTAN',
+    next:24
+  },
+  {
+    question: 'WASHINGTON, D.C.',
+    answer: 'UNITED STATES',
+    next: 25
+  },
+  {
+    question: 'ROME',
+    answer: 'ITALY',
+    next: 26
+  },
+  {
+    question: 'SOFIA',
+    answer: 'BULGARIA',
+    next: 27
+  },
+  {
+    question: 'VIENNA',
+    answer: 'AUSTRIA',
+    next: 28
+  },
+  {
+    question: 'ALGIERS',
+    answer: 'ALGERIA',
+    next: 29
+  },
+  {
+    question: 'BUENOS AIRES',
+    answer: 'ARGENTINA',
     next: null
   },
 ];
