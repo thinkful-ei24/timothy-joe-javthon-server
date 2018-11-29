@@ -9,7 +9,7 @@ const questionSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  memoryStrength: {
+  mValue: {
     type: Number,
     default: 1
   },

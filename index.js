@@ -13,7 +13,7 @@ const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
 const questionsRouter = require('./routes/questions');
 
-
+const jwtAuth = require('./strategies/jwt');
 
 app.use(
   morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
@@ -29,7 +29,7 @@ app.use(
 
 app.use('/api/users', usersRouter);
 app.use('/auth', authRouter);
-app.use('/api/questions', questionsRouter);
+app.use('/api/questions', jwtAuth, questionsRouter);
 
 app.use((req, res, next) => {
   const err = new Error('Not found');
