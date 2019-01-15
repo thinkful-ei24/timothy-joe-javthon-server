@@ -216,7 +216,7 @@ const seedData = questionData.map((q, index) => {
   };
 });
 
-module.exports = seedData.sort();
+module.exports = seedData;
 // module.exports = [
 //   {
 //     question: 'KABUL',
